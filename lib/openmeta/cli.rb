@@ -1,3 +1,6 @@
+
+vendor = File.expand_path('../vendor', __FILE__)
+$:.unshift(vendor) unless $:.include?(vendor)
 require 'thor'
 require 'openmeta/ui'
 
@@ -12,7 +15,7 @@ module Openmeta
       Openmeta.ui.debug! if options["verbose"]
     end
 
-    desc "recent tags", "print recent tags"
+    desc "recent", "print recent tags"
     method_option :format,
       :aliases => "-f",
       :default => nil,
@@ -24,12 +27,12 @@ module Openmeta
         puts tags
       else
         require 'yaml' if options[:format] == 'yaml'
-        to_method = "to_#{options[:format]}"
+        to_format = "to_#{options[:format]}"
 
         begin
-          puts tags.send(to_method)
+          puts tags.send(to_format)
         rescue NoMethodError
-          raise Openmeta::NoMethodError, "#{to_method} has not implemented!"
+          raise Openmeta::NoMethodError, "#{to_format} has not implemented!"
         end
       end
     end

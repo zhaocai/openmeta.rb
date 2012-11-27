@@ -1,6 +1,6 @@
 #!/usr/bin/env macruby
 
-require 'rubygems'
+($LOAD_PATH << File.expand_path("../../lib", __FILE__)).uniq!
 
 require 'openmeta'
 

@@ -2,17 +2,17 @@
 
 Gem::Specification.new do |s|
   s.name = "openmeta"
-  s.version = "1.0.0.20121127013032"
+  s.version = "1.0.0.20121127020226"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zhao Cai"]
   s.date = "2012-11-27"
   s.description = "FIX (describe your package)"
   s.email = ["caizhaoff@gmail.com"]
-  s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
-  s.files = [".autotest", "History.txt", "Manifest.txt", "README.txt", "Rakefile", "lib/openmeta.rb", "lib/openmeta/cli.rb", "lib/openmeta/friendly_errors.rb", "lib/openmeta/ui.rb", "lib/openmeta/version.rb", "test/test_openmeta.rb", ".gemtest"]
+  s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.rdoc"]
+  s.files = [".autotest", "History.txt", "Manifest.txt", "README.rdoc", "Rakefile", "lib/openmeta.rb", "lib/openmeta/cli.rb", "lib/openmeta/friendly_errors.rb", "lib/openmeta/ui.rb", "lib/openmeta/version.rb", "test/test_openmeta.rb", ".gemtest"]
   s.homepage = "https://github.com/zhaocai/openmeta.rb"
-  s.rdoc_options = ["--main", "README.txt"]
+  s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib"]
   s.rubyforge_project = "openmeta"
   s.rubygems_version = "1.8.24"

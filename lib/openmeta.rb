@@ -8,6 +8,7 @@ def is_macruby?
 end
 
 if is_macruby?
+  ($LOAD_PATH << File.expand_path("../openmeta/framework", __FILE__)).uniq!
   framework "OpenMeta"
 else
   raise NotImplementedError, "[Openmeta] only work with macruby"

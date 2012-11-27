@@ -1,5 +1,3 @@
-require 'rubygems/user_interaction'
-
 module Openmeta
   class UI
     def warn(message, newline = nil)

@@ -5,7 +5,7 @@
 
 == DESCRIPTION:
 
-FIX (describe your package)
+openMeta in Ruby (MacRuby, more exactly!)
 
 == FEATURES/PROBLEMS:
 
@@ -13,7 +13,7 @@ FIX (describe your package)
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  Port openMeta api to macruby using framework.
 
 == REQUIREMENTS:
 
