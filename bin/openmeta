@@ -1,0 +1,37 @@
+#!/usr/bin/env macruby
+
+($LOAD_PATH << File.expand_path("../lib", __FILE__)).uniq!
+
+require 'rubygems' unless defined? Gem
+
+require 'commander/import'
+require 'openmeta'
+
+program :version, Openmeta::VERSION
+program :description, 'Openmeta MacRuby Implementation'
+
+command :clone do |c|
+  c.syntax = 'openmeta clone [options] Files'
+  c.summary = 'clone '
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '-f', '--from FILE', 'clone from tags from the FILE [required]'
+  c.action do |args, options|
+    p args
+    p options
+    # Do something or c.when_called Openmeta::Commands::Add
+  end
+
+end
+
+command :show do |c|
+  c.syntax = 'openmeta show [options]'
+  c.summary = ''
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '--some-switch', 'Some switch that does something'
+  c.action do |args, options|
+    # Do something or c.when_called Openmeta::Commands::Show
+  end
+end
+

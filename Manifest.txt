@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/openmeta
+lib/openmeta.rb
+test/test_openmeta.rb
