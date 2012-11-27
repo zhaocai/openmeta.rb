@@ -41,9 +41,9 @@ module Openmeta
     end
 
     def get_tags(path)
-      tags = OpenMeta.getUserTags(path, error:error)
+      tags = OpenMeta.getUserTags(File.expand_path(path), error:error)
       if error.value
-        raise Openmeta::ObjCError, error.value.to_s
+        raise Openmeta::ObjCError, error.value.inspect
       end
       tags
     end
@@ -56,9 +56,9 @@ module Openmeta
     end
 
     def get_rating(path)
-      rating = OpenMeta.getRating(path, error:error)
+      rating = OpenMeta.getRating(File.expand_path(path), error:error)
       if error.value
-        raise Openmeta::ObjCError, error.value.to_s
+        raise Openmeta::ObjCError, error.value.inspect
       end
       rating
     end

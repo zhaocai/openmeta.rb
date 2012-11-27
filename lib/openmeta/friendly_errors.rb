@@ -15,7 +15,7 @@ module Openmeta
     rescue Exception => e
       Openmeta.ui.error(
         "Unfortunately, a fatal error has occurred. Please see the Openmeta \n" \
-        "troubleshooting documentation. Thanks! #{e.inspect} #{e.backtrace.join("\n")}\n")
+        "troubleshooting documentation. Thanks!\n  #{e.inspect} #{e.backtrace.join("\n")}\n")
       raise e
     end
   end

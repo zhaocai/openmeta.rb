@@ -20,21 +20,11 @@ module Openmeta
       :aliases => "-f",
       :default => nil,
       :type    => :string,
-      :desc    => "print as yaml/xml"
+      :desc    => "print as yaml/plist"
     def recent
       tags = OpenMetaPrefs.recentTags
-      unless options[:format]
-        puts tags
-      else
-        require 'yaml' if options[:format] == 'yaml'
-        to_format = "to_#{options[:format]}"
 
-        begin
-          puts tags.send(to_format)
-        rescue NoMethodError
-          raise Openmeta::NoMethodError, "#{to_format} has not implemented!"
-        end
-      end
+      puts_to(options[:format], tags)
     end
 
     desc "clone", "clone openmeta tags and rating"
@@ -44,7 +34,6 @@ module Openmeta
       :type     => :string,
       :desc     => "clone openmeta tags and rating from the FILE [required]"
     def clone(file)
-      from_file = File.expand_path(options[:from])
       unless File.exist?(from_file)
           raise Openmeta::PathError, "#{from_file} does not exist!"
       end
@@ -54,6 +43,40 @@ module Openmeta
 
       Openmeta.set_tags(tags, file) unless tags.empty?
       Openmeta.set_rating(rating, file) unless rating == 0.0
+    end
+
+
+    desc "get", "get openmeta tags and rating"
+    method_option :format,
+      :aliases => "-f",
+      :default => nil,
+      :type    => :string,
+      :desc    => "print as yaml/plist"
+    def get(file)
+
+      tags = {
+        :tags => Openmeta.get_tags(file),
+        :rating => Openmeta.get_rating(file)
+      }
+
+      puts_to(options[:format], tags)
+    end
+
+  private
+    def puts_to(format, data)
+      unless format
+        puts data
+      else
+        require 'yaml' if format == 'yaml'
+        to_format = "to_#{format}"
+
+        begin
+          puts data.send(to_format)
+        rescue NoMethodError
+          raise Openmeta::NoMethodError, "#{to_format} has not implemented!"
+        end
+      end
+
     end
   end
 end
