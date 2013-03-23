@@ -13,6 +13,44 @@ openMeta in Ruby (MacRuby, more exactly!). This gem ports [openMeta][openmeta] a
 * `[sudo] macgem install openmeta.rb`
 
 
+
+## COMMAND LINE INTERFACE:
+
+### 1. Tasks (Subcommands):
+
+      tag add                    # add openmeta tags, use ',' to separate multipl...
+      tag clear                  # clear openmeta tags and rating
+      tag clone -f, --from=FROM  # clone openmeta tags and rating
+      tag get                    # get openmeta tags and rating
+      tag help [TASK]            # Describe available tasks or one specific task
+      tag rate                   # set openmeta rating
+      tag recent                 # print recent tags
+      tag remove                 # remove openmeta tags, use ',' to separate mult...
+      tag set                    # set openmeta tags, use ',' to separate multipl...
+
+### 2. Get Tags
+
+      > tag help get
+      get openmeta tags and rating
+      Usage:
+        tag get File
+
+      Options:
+        -f, [--format=FORMAT]  # print as yaml/plist
+
+### 3. Set Tags
+
+      > tag help set
+      Usage:
+        tag set --tag=TAG1,TAG2,TAG3 File
+
+      Options:
+        -t, [--tag=TAG]  # set tags, use ',' to separate multiple tags
+
+### 4. Other Tasks:
+
+      > tag help [TASK]
+
 ## KNOWN ISSUE:
 
 ### 1. Macruby Slow Startup
