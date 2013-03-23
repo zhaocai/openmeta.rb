@@ -1,11 +1,12 @@
-.autotest
 History.txt
 Manifest.txt
-README.txt
+README.md
 Rakefile
 lib/openmeta.rb
 lib/openmeta/cli.rb
 lib/openmeta/friendly_errors.rb
 lib/openmeta/ui.rb
 lib/openmeta/version.rb
-test/test_openmeta.rb
+lib/openmeta/framework/**/*
+
+

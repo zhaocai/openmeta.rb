@@ -1,6 +1,3 @@
-
-vendor = File.expand_path('../vendor', __FILE__)
-$:.unshift(vendor) unless $:.include?(vendor)
 require 'thor'
 require 'openmeta/ui'
 
@@ -17,10 +14,10 @@ module Openmeta
 
     desc "recent", "print recent tags"
     method_option :format,
-      :aliases => "-f",
-      :default => nil,
-      :type    => :string,
-      :desc    => "print as yaml/plist"
+      :aliases      => "-f"                  ,
+      :lazy_default => nil                   ,
+      :type         => :string               ,
+      :desc         => "print as yaml/plist"
     def recent
       tags = OpenMetaPrefs.recentTags
 
@@ -48,10 +45,10 @@ module Openmeta
 
     desc "get", "get openmeta tags and rating"
     method_option :format,
-      :aliases => "-f",
-      :default => nil,
-      :type    => :string,
-      :desc    => "print as yaml/plist"
+      :aliases      => "-f"                  ,
+      :lazy_default => nil                   ,
+      :type         => :string               ,
+      :desc         => "print as yaml/plist"
     def get(file)
 
       tags = {
@@ -60,6 +57,37 @@ module Openmeta
       }
 
       puts_to(options[:format], tags)
+    end
+
+    desc "clear", "clear openmeta tags and rating"
+    def clear(file)
+      Openmeta.set_tags([], file)
+      Openmeta.set_rating(0.0, file)
+    end
+
+
+    desc "set", "set openmeta tags, use ',' to separate multiple tags"
+    method_option :tag,
+      :aliases      => "-t"       ,
+      :lazy_default => ''         ,
+      :type         => :string    ,
+      :desc         => "set tags, use ',' to separate multiple tags"
+    def set(file)
+      tags = options[:tag].split(',')
+      Openmeta.set_tags(tags, file)
+    end
+
+    desc "rate", "set openmeta rating"
+    method_option :rate,
+      :aliases      => "-r"       ,
+      :lazy_default => 0.0        ,
+      :type         => :numeric   ,
+      :desc         => "set rating"
+    def rate(file)
+      if options[:rate] > 5.0
+        raise RangeError, "rating is between [0.0 - 5.0]"
+      end
+      Openmeta.set_rating(options[:rate], file)
     end
 
   private

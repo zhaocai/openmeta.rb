@@ -1,3 +1,6 @@
+#!/usr/bin/env macruby
+# -*- coding: utf-8 -*-
+
 def is_macruby?
   begin
     MACRUBY_VERSION
@@ -24,6 +27,7 @@ module Openmeta
   end
 
   class ObjCError           < OpenmetaError; status_code(1) ; end
+  class RangeError          < OpenmetaError; status_code(2) ; end
   class NoMethodError       < OpenmetaError; status_code(13) ; end
   class PathError           < OpenmetaError; status_code(14) ; end
   class DslError            < OpenmetaError; status_code(15) ; end
