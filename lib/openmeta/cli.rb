@@ -77,6 +77,22 @@ module Openmeta
       Openmeta.set_tags(tags, file)
     end
 
+    desc "add", "add openmeta tags, use ',' to separate multiple tags"
+    method_option :tag,
+      :aliases      => "-t"       ,
+      :lazy_default => ''         ,
+      :type         => :string    ,
+      :desc         => "add tags, use ',' to separate multiple tags"
+    def add(file)
+      tags = options[:tag].split(',')
+      existing_tags = Openmeta.get_tags(file)
+      # union
+      tags |= existing_tags
+      unless tags.eql? existing_tags
+        Openmeta.set_tags(tags, file)
+      end
+    end
+
     desc "remove", "remove openmeta tags, use ',' to separate multiple tags"
     method_option :tag,
       :aliases      => "-t"       ,
