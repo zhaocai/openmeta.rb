@@ -24,6 +24,8 @@ One thing recommended is to add `VM_OPT_LEVEL=0` in front of the command line li
 alias tag='VM_OPT_LEVEL=0 /usr/local/bin/tag'
 ```
 
+In my environment, the startup time for the `tag` command is about 1 second.
+
 ## DEVELOPERS:
 
 After checking out the source, run:
