@@ -5,24 +5,24 @@
 
 ## DESCRIPTION:
 
-openMeta in Ruby (MacRuby, more exactly!)
+openMeta in Ruby (MacRuby, more exactly!). This gem ports [openMeta][openmeta] api to macruby using framework.
 
 
-## SYNOPSIS:
+## INSTALLATION:
 
-  Port openMeta api to macruby using framework.
-
-## REQUIREMENTS:
-
-* macruby
-* thor
-
-## INSTALL:
-
-* `gem install openmeta.rb`
+* `[sudo] macgem install openmeta.rb`
 
 
+## KNOWN ISSUE:
 
+### 1. Macruby Slow Startup
+
+This is a [known commnon issue of macruby]( https://github.com/MacRuby/MacRuby/wiki/Common-Issues ). 
+One thing recommended is to add `VM_OPT_LEVEL=0` in front of the command line like 
+
+```bash
+alias tag='VM_OPT_LEVEL=0 /usr/local/bin/tag'
+```
 
 ## DEVELOPERS:
 
@@ -48,3 +48,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+[openmeta]: http://code.google.com/p/openmeta/
+
