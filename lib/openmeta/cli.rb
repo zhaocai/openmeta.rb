@@ -77,6 +77,22 @@ module Openmeta
       Openmeta.set_tags(tags, file)
     end
 
+    desc "remove", "remove openmeta tags, use ',' to separate multiple tags"
+    method_option :tag,
+      :aliases      => "-t"       ,
+      :lazy_default => ''         ,
+      :type         => :string    ,
+      :desc         => "remove tags, use ',' to separate multiple tags"
+    def remove(file)
+      tags = options[:tag].split(',')
+      # duplicate a frozen array
+      existing_tags = Openmeta.get_tags(file).dup
+      unless existing_tags.empty?
+        existing_tags.delete_if { |t| tags.include?(t) }
+        Openmeta.set_tags(existing_tags, file)
+      end
+    end
+
     desc "rate", "set openmeta rating"
     method_option :rate,
       :aliases      => "-r"       ,

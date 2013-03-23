@@ -44,6 +44,7 @@ module Openmeta
       @error ||= error = Pointer.new(:id)
     end
 
+    # **note** returned array are frozen
     def get_tags(path)
       tags = OpenMeta.getUserTags(File.expand_path(path), error:error)
       if error.value
