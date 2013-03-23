@@ -1,6 +1,12 @@
-=== 1.0.0 / 2012-10-12
+1.0.4 / 2013-03-23
+==================
+  * add 'add' tag command
+  * add remove tag command
 
-* 1 major enhancement
+1.0.0 / 2012-10-12
+==================
 
-  * Birthday!
+  * Disable JIT optimization to save loading time
+  * Implemented "clone" and "recent" command
+  * Port OpenMeta as framework
 
