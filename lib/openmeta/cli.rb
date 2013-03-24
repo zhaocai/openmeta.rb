@@ -87,7 +87,7 @@ module Openmeta
       tags = options[:tag].split(',')
       existing_tags = Openmeta.get_tags(file)
       # union
-      tags |= existing_tags
+      tags |= existing_tags if existing_tags
       unless tags.eql? existing_tags
         Openmeta.set_tags(tags, file)
       end
