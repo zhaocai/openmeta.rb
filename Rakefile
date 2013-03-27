@@ -4,8 +4,10 @@ require 'rubygems'
 require 'hoe'
 
 Hoe.plugin :gemspec
+Hoe.plugin :bundler
 Hoe.plugin :git
 Hoe.plugin :test
+Hoe.plugin :version
 
 Hoe.spec 'openmeta.rb' do
 

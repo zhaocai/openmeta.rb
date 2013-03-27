@@ -30,18 +30,19 @@ module Openmeta
       :required => true,
       :type     => :string,
       :desc     => "clone openmeta tags and rating from the FILE [required]"
-    def clone(file)
+    def clone(*files)
       unless File.exist?(from_file)
-          raise Openmeta::PathError, "#{from_file} does not exist!"
+        raise Openmeta::PathError, "#{from_file} does not exist!"
       end
 
-      tags = Openmeta.get_tags(from_file)
-      rating = Openmeta.get_rating(from_file)
+      files.each { |file|
+        tags = Openmeta.get_tags(from_file)
+        rating = Openmeta.get_rating(from_file)
 
-      Openmeta.set_tags(tags, file) unless tags.empty?
-      Openmeta.set_rating(rating, file) unless rating == 0.0
+        Openmeta.set_tags(tags, file) unless tags.empty?
+        Openmeta.set_rating(rating, file) unless rating == 0.0
+      }
     end
-
 
     desc "get", "get openmeta tags and rating"
     method_option :format,
@@ -49,20 +50,22 @@ module Openmeta
       :lazy_default => nil                   ,
       :type         => :string               ,
       :desc         => "print as yaml/plist"
-    def get(file)
-
-      tags = {
-        :tags => Openmeta.get_tags(file),
-        :rating => Openmeta.get_rating(file)
+    def get(*files)
+      files.each { |file|
+        tags = {
+          :tags => Openmeta.get_tags(file),
+          :rating => Openmeta.get_rating(file)
+        }
+        puts_to(options[:format], tags)
       }
-
-      puts_to(options[:format], tags)
     end
 
     desc "clear", "clear openmeta tags and rating"
-    def clear(file)
-      Openmeta.set_tags([], file)
-      Openmeta.set_rating(0.0, file)
+    def clear(*files)
+      files.each { |file|
+        Openmeta.set_tags([], file)
+        Openmeta.set_rating(0.0, file)
+      }
     end
 
 
@@ -72,9 +75,11 @@ module Openmeta
       :lazy_default => ''         ,
       :type         => :string    ,
       :desc         => "set tags, use ',' to separate multiple tags"
-    def set(file)
-      tags = options[:tag].split(',')
-      Openmeta.set_tags(tags, file)
+    def set(*files)
+      files.each { |file|
+        tags = options[:tag].split(',')
+        Openmeta.set_tags(tags, file)
+      }
     end
 
     desc "add", "add openmeta tags, use ',' to separate multiple tags"
@@ -83,14 +88,18 @@ module Openmeta
       :lazy_default => ''         ,
       :type         => :string    ,
       :desc         => "add tags, use ',' to separate multiple tags"
-    def add(file)
-      tags = options[:tag].split(',')
-      existing_tags = Openmeta.get_tags(file)
-      # union
-      tags |= existing_tags if existing_tags
-      unless tags.eql? existing_tags
-        Openmeta.set_tags(tags, file)
-      end
+    def add(*files)
+      add_tags = options[:tag].split(',')
+      files.each { |file|
+        tags = add_tags
+        existing_tags = Openmeta.get_tags(file)
+        # union
+        tags |= existing_tags if existing_tags
+
+        unless tags.eql? existing_tags
+          Openmeta.set_tags(tags, file)
+        end
+      }
     end
 
     desc "remove", "remove openmeta tags, use ',' to separate multiple tags"
@@ -99,14 +108,16 @@ module Openmeta
       :lazy_default => ''         ,
       :type         => :string    ,
       :desc         => "remove tags, use ',' to separate multiple tags"
-    def remove(file)
+    def remove(*files)
       tags = options[:tag].split(',')
-      # duplicate a frozen array
-      existing_tags = Openmeta.get_tags(file).dup
-      unless existing_tags.empty?
-        existing_tags.delete_if { |t| tags.include?(t) }
-        Openmeta.set_tags(existing_tags, file)
-      end
+      files.each { |file|
+        # duplicate a frozen array
+        existing_tags = Openmeta.get_tags(file).dup
+        unless existing_tags.empty?
+          existing_tags.delete_if { |t| tags.include?(t) }
+          Openmeta.set_tags(existing_tags, file)
+        end
+      }
     end
 
     desc "rate", "set openmeta rating"
@@ -115,11 +126,13 @@ module Openmeta
       :lazy_default => 0.0        ,
       :type         => :numeric   ,
       :desc         => "set rating"
-    def rate(file)
-      if options[:rate] > 5.0
-        raise RangeError, "rating is between [0.0 - 5.0]"
-      end
-      Openmeta.set_rating(options[:rate], file)
+    def rate(*files)
+      files.each { |file|
+        if options[:rate] > 5.0
+          raise RangeError, "rating is between [0.0 - 5.0]"
+        end
+        Openmeta.set_rating(options[:rate], file)
+      }
     end
 
   private
