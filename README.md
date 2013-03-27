@@ -1,11 +1,14 @@
 # openmeta.rb
 
-* https://github.com/zhaocai/openmeta.rb
+* home  :: https://github.com/zhaocai/openmeta.rb
+* rdoc  :: http://rubydoc.info/gems/openmeta.rb/
+* code  :: https://github.com/zhaocai/openmeta.rb
+* bugs  :: https://github.com/zhaocai/openmeta.rb/issues
 
 
 ## DESCRIPTION:
 
-openMeta in Ruby (MacRuby, more exactly!). This gem ports [openMeta][openmeta] api to macruby using framework.
+openMeta in Ruby (MacRuby, more exactly!). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) api to macruby using framework.
 
 
 ## INSTALLATION:

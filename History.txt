@@ -1,3 +1,10 @@
+
+1.1.0 / 2013-03-27 
+==================
+
+  * ! cli: support multiple files input
+  * - fix add command when nil for get_tags is returned
+
 1.0.4 / 2013-03-23
 ==================
   * add 'add' tag command
