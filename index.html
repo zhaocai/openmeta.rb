@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Openmeta.rb by zhaocai</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Openmeta.rb</h1>
+        <p>openMeta in Ruby (MacRuby, more exactly!). This gem ports openMeta api to macruby using framework.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/zhaocai/openmeta.rb" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/zhaocai/openmeta.rb/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/zhaocai/openmeta.rb/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>openmeta.rb</h1>
+
+<ul>
+<li>home  :: <a href="https://github.com/zhaocai/openmeta.rb">https://github.com/zhaocai/openmeta.rb</a>
+</li>
+<li>rdoc  :: <a href="http://rubydoc.info/gems/openmeta.rb/">http://rubydoc.info/gems/openmeta.rb/</a>
+</li>
+<li>code  :: <a href="https://github.com/zhaocai/openmeta.rb">https://github.com/zhaocai/openmeta.rb</a>
+</li>
+<li>bugs  :: <a href="https://github.com/zhaocai/openmeta.rb/issues">https://github.com/zhaocai/openmeta.rb/issues</a>
+</li>
+</ul><h2>DESCRIPTION:</h2>
+
+<p>openMeta in Ruby (MacRuby, more exactly!). This gem ports <a href="http://code.google.com/p/openmeta/">openmeta</a> api to macruby using framework.</p>
+
+<h2>INSTALLATION:</h2>
+
+<ul>
+<li><code>[sudo] macgem install openmeta.rb</code></li>
+</ul><h2>COMMAND LINE INTERFACE:</h2>
+
+<h3>1. Tasks (Subcommands):</h3>
+
+<pre><code>  tag add                    # add openmeta tags, use ',' to separate multipl...
+  tag clear                  # clear openmeta tags and rating
+  tag clone -f, --from=FROM  # clone openmeta tags and rating
+  tag get                    # get openmeta tags and rating
+  tag help [TASK]            # Describe available tasks or one specific task
+  tag rate                   # set openmeta rating
+  tag recent                 # print recent tags
+  tag remove                 # remove openmeta tags, use ',' to separate mult...
+  tag set                    # set openmeta tags, use ',' to separate multipl...
+</code></pre>
+
+<h3>2. Get Tags</h3>
+
+<pre><code>  &gt; tag help get
+  get openmeta tags and rating
+  Usage:
+    tag get File
+
+  Options:
+    -f, [--format=FORMAT]  # print as yaml/plist
+</code></pre>
+
+<h3>3. Set Tags</h3>
+
+<pre><code>  &gt; tag help set
+  Usage:
+    tag set --tag=TAG1,TAG2,TAG3 File
+
+  Options:
+    -t, [--tag=TAG]  # set tags, use ',' to separate multiple tags
+</code></pre>
+
+<h3>4. Other Tasks:</h3>
+
+<pre><code>  &gt; tag help [TASK]
+</code></pre>
+
+<h2>KNOWN ISSUE:</h2>
+
+<h3>1. Macruby Slow Startup</h3>
+
+<p>This is a <a href="https://github.com/MacRuby/MacRuby/wiki/Common-Issues">known commnon issue of macruby</a>. 
+One thing recommended is to add <code>VM_OPT_LEVEL=0</code> in front of the command line like </p>
+
+<div class="highlight"><pre><span class="nb">alias </span><span class="nv">tag</span><span class="o">=</span><span class="s1">'VM_OPT_LEVEL=0 /usr/local/bin/tag'</span>
+</pre></div>
+
+<p>In my environment, the startup time for the <code>tag</code> command is about 1 second.</p>
+
+<h2>DEVELOPERS:</h2>
+
+<p>After checking out the source, run:</p>
+
+<p>$ rake newb</p>
+
+<p>This task will install any missing dependencies, run the tests/specs,
+and generate the RDoc.</p>
+
+<h2>LICENSE:</h2>
+
+<p>Copyright (c) 2013 Zhao Cai <a href="mailto:caizhaoff@gmail.com">caizhaoff@gmail.com</a></p>
+
+<p>This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with
+this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/zhaocai">zhaocai</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
