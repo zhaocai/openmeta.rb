@@ -1,5 +1,14 @@
+1.3.0 / 2013-03-30
+==================
+  * [Fix]( recent tags update )
+  * [Improve]( spec test )
+  * [Remove]( Gemfile, bundler exec is not working with macruby. )
 
-1.1.0 / 2013-03-27 
+1.2.0 / 2013-03-30
+==================
+  * [Improve]( polish openmeta api )
+
+1.1.0 / 2013-03-27
 ==================
 
   * ! cli: support multiple files input
