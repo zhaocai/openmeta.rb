@@ -15,6 +15,10 @@ describe "Openmeta" do
       expect { Openmeta.get_tags("/path/to/nowhere") }.to raise_error(Openmeta::ObjCError)
     end
 
+    it "should not raise Error if file does not contains tags" do
+      expect { Openmeta.clone(@testfiles[0], @testfiles[1]) }.should_not raise_error
+    end
+
     it "should set tags and rating correctly" do
       tags = ["Test","Tag"]
       rating = 4

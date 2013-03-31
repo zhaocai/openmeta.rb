@@ -121,7 +121,7 @@ module Openmeta
 
       to_files = fu_list(to_files)
       to_files.each { |file|
-        set_tags(tags, file) unless tags.empty?
+        set_tags(tags, file) unless (tags == nil or tags.empty?)
         set_rating(rating, file) unless rating == 0.0
       }
     end
