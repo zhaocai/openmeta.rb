@@ -31,18 +31,7 @@ module Openmeta
       :type     => :string,
       :desc     => "clone openmeta tags and rating from the FILE [required]"
     def clone(*files)
-      from_file = options[:from]
-      unless File.exist?(from_file)
-        raise Openmeta::PathError, "#{from_file} does not exist!"
-      end
-
-      files.each { |file|
-        tags = Openmeta.get_tags(from_file)
-        rating = Openmeta.get_rating(from_file)
-
-        Openmeta.set_tags(tags, file) unless tags.empty?
-        Openmeta.set_rating(rating, file) unless rating == 0.0
-      }
+      Openmeta.clone(options[:from], files)
     end
 
     desc "get", "get openmeta tags and rating"
@@ -63,10 +52,7 @@ module Openmeta
 
     desc "clear", "clear openmeta tags and rating"
     def clear(*files)
-      files.each { |file|
-        Openmeta.set_tags([], file)
-        Openmeta.set_rating(0.0, file)
-      }
+      Openmeta.clear(files)
     end
 
 
@@ -90,17 +76,8 @@ module Openmeta
       :type         => :string    ,
       :desc         => "add tags, use ',' to separate multiple tags"
     def add(*files)
-      add_tags = options[:tag].split(',')
-      files.each { |file|
-        tags = add_tags
-        existing_tags = Openmeta.get_tags(file)
-        # union
-        tags |= existing_tags if existing_tags
-
-        unless tags.eql? existing_tags
-          Openmeta.set_tags(tags, file)
-        end
-      }
+      tags = options[:tag].split(',')
+      Openmeta.add_tags(tags, files)
     end
 
     desc "remove", "remove openmeta tags, use ',' to separate multiple tags"
@@ -111,14 +88,7 @@ module Openmeta
       :desc         => "remove tags, use ',' to separate multiple tags"
     def remove(*files)
       tags = options[:tag].split(',')
-      files.each { |file|
-        # duplicate a frozen array
-        existing_tags = Openmeta.get_tags(file).dup
-        unless existing_tags.empty?
-          existing_tags.delete_if { |t| tags.include?(t) }
-          Openmeta.set_tags(existing_tags, file)
-        end
-      }
+      Openmeta.remove_tags(tags, files)
     end
 
     desc "rate", "set openmeta rating"

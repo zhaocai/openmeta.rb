@@ -75,9 +75,52 @@ module Openmeta
       end
     end
 
+    def clone(from_file, to_files)
+      unless File.exist?(from_file)
+        raise Openmeta::PathError, "#{from_file} does not exist!"
+      end
+
+      tags = get_tags(from_file)
+      rating = get_rating(from_file)
+
+      files.each { |file|
+        set_tags(tags, file) unless tags.empty?
+        set_rating(rating, file) unless rating == 0.0
+      }
+    end
+
+    def clear(files)
+      files.each { |file|
+        set_tags([], file)
+        set_rating(0.0, file)
+      }
+    end
+
+    def add_tags(tags, to_files)
+      to_files.each { |file|
+        t = tags
+        existing_tags = get_tags(file)
+        # union
+        t |= existing_tags if existing_tags
+
+        unless t.eql? existing_tags
+          set_tags(t, file)
+        end
+      }
+    end
+
+    def remove_tags(tags, to_files)
+      to_files.each { |file|
+        # duplicate a frozen array
+        existing_tags = get_tags(file).dup
+        unless existing_tags.empty?
+          existing_tags.delete_if { |t| tags.include?(t) }
+          set_tags(existing_tags, file)
+        end
+      }
+    end
+
   end
 
 end
-
-
 
