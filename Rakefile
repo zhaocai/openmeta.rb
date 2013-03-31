@@ -12,8 +12,18 @@ Hoe.plugin :version
 Hoe.spec 'openmeta.rb' do
 
   developer('Zhao Cai', 'caizhaoff@gmail.com')
+  license 'GPL-3'
 
   extra_deps << ['thor', '~> 0.17.0']
+
+
+
+
+
+  extra_dev_deps << ['rspec', '>= 2.13']
+  extra_dev_deps << ['rake', '>= 10.0.0']
+  extra_dev_deps << ['hoe'] << ['hoe-gemspec'] << ['hoe-git'] << ['hoe-version'] << ['hoe-bundler']
+  extra_dev_deps << ['guard'] << ['guard-rspec'] << ['terminal-notifier-guard'] << ['growl']
 end
 
 %w{major minor patch}.each { |v| 
@@ -23,5 +33,9 @@ end
     sh "git commit -am '#{m}'"
   end
 }
+
+desc "Default Test"
+task :default => [:spec] do
+end
 
 # vim: syntax=ruby

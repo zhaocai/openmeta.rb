@@ -19,9 +19,7 @@ module Openmeta
       :type         => :string               ,
       :desc         => "print as yaml/plist"
     def recent
-      tags = OpenMetaPrefs.recentTags
-
-      puts_to(options[:format], tags)
+      puts_to(options[:format], Openmeta.recent_tags)
     end
 
     desc "clone", "clone openmeta tags and rating"
