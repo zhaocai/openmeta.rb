@@ -31,6 +31,7 @@ module Openmeta
       :type     => :string,
       :desc     => "clone openmeta tags and rating from the FILE [required]"
     def clone(*files)
+      from_file = options[:from]
       unless File.exist?(from_file)
         raise Openmeta::PathError, "#{from_file} does not exist!"
       end

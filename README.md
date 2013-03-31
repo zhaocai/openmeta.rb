@@ -1,6 +1,6 @@
 # openmeta.rb
 
-* home  :: https://github.com/zhaocai/openmeta.rb
+* home  :: http://zhaocai.github.com/openmeta.rb
 * rdoc  :: http://rubydoc.info/gems/openmeta.rb/
 * code  :: https://github.com/zhaocai/openmeta.rb
 * bugs  :: https://github.com/zhaocai/openmeta.rb/issues
