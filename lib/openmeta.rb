@@ -85,13 +85,13 @@ module Openmeta
     def remove_tags(tags, from_files)
       from_files = fu_list(from_files)
 
+      return if tags.empty?
+
       from_files.each { |file|
-        # duplicate a frozen array
-        existing_tags = get_tags(file).dup
-        unless existing_tags.empty?
-          existing_tags.delete_if { |t| tags.include?(t) }
-          set_tags(existing_tags, file)
-        end
+        existing_tags = get_tags(file) # frozen array
+        next if existing_tags.nil? or existing_tags.empty?
+
+        set_tags(existing_tags - tags, file)
       }
     end
 

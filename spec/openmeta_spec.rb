@@ -15,8 +15,12 @@ describe "Openmeta" do
       expect { Openmeta.get_tags("/path/to/nowhere") }.to raise_error(Openmeta::ObjCError)
     end
 
-    it "should not raise Error if file does not contains tags" do
-      expect { Openmeta.clone(@testfiles[0], @testfiles[1]) }.should_not raise_error
+    it "should not raise error if file does not contains tags" do
+      expect { Openmeta.clone(@testfiles[0], @testfiles[1]) }.to_not raise_error
+    end
+
+    it "should not raise error when removing nonexisting tags" do
+      expect { Openmeta.remove_tags(['NonExistingTag'], @testfiles[1]) }.to_not raise_error
     end
 
     it "should set tags and rating correctly" do
@@ -57,6 +61,7 @@ describe "Openmeta" do
       rtags = Openmeta.get_tags(@testfiles[1])
       rtags.should match_array(tags)
     end
+
 
     after :all do
       FileUtils.safe_unlink(@testfiles)
