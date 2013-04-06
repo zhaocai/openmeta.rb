@@ -7,9 +7,8 @@ module Openmeta
 
     def initialize(*)
       super
-      the_shell = (options["no-color"] || (not STDOUT.tty?) ? Thor::Shell::Basic.new : shell)
-      Openmeta.ui = UI::Shell.new(the_shell)
-      Openmeta.ui.debug! if options["verbose"]
+      Openmeta.ui = UI::Shell.new(options)
+      Openmeta.ui.level = "debug" if options["verbose"]
     end
 
     desc "recent", "print recent tags"

@@ -14,7 +14,8 @@ Hoe.spec 'openmeta.rb' do
   developer('Zhao Cai', 'caizhaoff@gmail.com')
   license 'GPL-3'
 
-  extra_deps << ['thor', '~> 0.17.0']
+  extra_deps << ['thor', '~> 0.18.0']
+  extra_deps << ['filetype', '~> 0.3.0']
 
 
 
