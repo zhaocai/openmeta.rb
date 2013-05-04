@@ -1,48 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Openmeta.rb by zhaocai</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=640" />
 
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Openmeta.rb by zhaocai</title>
   </head>
+
   <body>
+    <a id="forkme_banner" href="https://github.com/zhaocai/openmeta.rb">View on GitHub</a>
+    <div class="shell">
 
       <header>
-        <h1>Openmeta.rb</h1>
-        <p>openMeta in Ruby (MacRuby, more exactly!). This gem ports openMeta api to macruby using framework.</p>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Openmeta.rb</h1>
+            <h2>openMeta in Ruby (MacRuby, more exactly!). This gem ports openMeta api to macruby using framework.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
       </header>
 
-      <div id="banner">
-        <span id="logo"></span>
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/zhaocai/openmeta.rb/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/zhaocai/openmeta.rb/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
 
-        <a href="https://github.com/zhaocai/openmeta.rb" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/zhaocai/openmeta.rb/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/zhaocai/openmeta.rb/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
         <h1>openmeta.rb</h1>
 
 <ul>
-<li>home  :: <a href="https://github.com/zhaocai/openmeta.rb">https://github.com/zhaocai/openmeta.rb</a>
+<li>home  :: <a href="http://zhaocai.github.com/openmeta.rb">http://zhaocai.github.com/openmeta.rb</a>
 </li>
 <li>rdoc  :: <a href="http://rubydoc.info/gems/openmeta.rb/">http://rubydoc.info/gems/openmeta.rb/</a>
 </li>
@@ -52,11 +59,12 @@
 </li>
 </ul><h2>DESCRIPTION:</h2>
 
-<p>openMeta in Ruby (MacRuby, more exactly!). This gem ports <a href="http://code.google.com/p/openmeta/">openmeta</a> api to macruby using framework.</p>
+<p>openMeta in Ruby (support mac system native ruby 1.8, and MacRuby). This gem ports <a href="http://code.google.com/p/openmeta/">openmeta</a> api to ruby using framework.</p>
 
 <h2>INSTALLATION:</h2>
 
 <ul>
+<li><code>[sudo] gem install openmeta.rb</code></li>
 <li><code>[sudo] macgem install openmeta.rb</code></li>
 </ul><h2>COMMAND LINE INTERFACE:</h2>
 
@@ -103,7 +111,9 @@
 
 <h3>1. Macruby Slow Startup</h3>
 
-<p>This is a <a href="https://github.com/MacRuby/MacRuby/wiki/Common-Issues">known commnon issue of macruby</a>. 
+<p>A. Version 2.0+ support native mac ruby 1.8. Use system ruby instead.</p>
+
+<p>B. This is a <a href="https://github.com/MacRuby/MacRuby/wiki/Common-Issues">known commnon issue of macruby</a>. 
 One thing recommended is to add <code>VM_OPT_LEVEL=0</code> in front of the command line like </p>
 
 <div class="highlight"><pre><span class="nb">alias </span><span class="nv">tag</span><span class="o">=</span><span class="s1">'VM_OPT_LEVEL=0 /usr/local/bin/tag'</span>
@@ -136,12 +146,31 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</
 <p>You should have received a copy of the GNU General Public License along with
 this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
       </section>
+
       <footer>
-        <p>Project maintained by <a href="https://github.com/zhaocai">zhaocai</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/zhaocai">zhaocai</a> can be found on <a href="https://github.com/zhaocai/openmeta.rb">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
       </footer>
+
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-2618346-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
