@@ -1,5 +1,6 @@
 require 'thor'
 require 'openmeta/ui'
+require 'yaml'
 
 module Openmeta
 
@@ -33,10 +34,10 @@ module Openmeta
 
     desc "get", "get openmeta tags and rating"
     method_option :format,
-      :aliases      => "-f"                  ,
-      :lazy_default => nil                   ,
-      :type         => :string               ,
-      :desc         => "print as yaml/plist"
+      :aliases => "-f"                  ,
+      :default => :yaml                 ,
+      :type    => :string               ,
+      :desc    => "print as yaml/plist"
     def get(*files)
       files.each { |file|
         tags = {
