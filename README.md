@@ -8,11 +8,12 @@
 
 ## DESCRIPTION:
 
-openMeta in Ruby (MacRuby, more exactly!). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) api to macruby using framework.
+openMeta in Ruby (support mac system native ruby 1.8, and MacRuby). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) api to ruby using framework.
 
 
 ## INSTALLATION:
 
+* `[sudo] gem install openmeta.rb`
 * `[sudo] macgem install openmeta.rb`
 
 
@@ -58,7 +59,9 @@ openMeta in Ruby (MacRuby, more exactly!). This gem ports [openmeta]( http://cod
 
 ### 1. Macruby Slow Startup
 
-This is a [known commnon issue of macruby]( https://github.com/MacRuby/MacRuby/wiki/Common-Issues ). 
+A. Version 2.0+ support native mac ruby 1.8. Use system ruby instead.
+
+B. This is a [known commnon issue of macruby]( https://github.com/MacRuby/MacRuby/wiki/Common-Issues ). 
 One thing recommended is to add `VM_OPT_LEVEL=0` in front of the command line like 
 
 ```bash
@@ -66,6 +69,7 @@ alias tag='VM_OPT_LEVEL=0 /usr/local/bin/tag'
 ```
 
 In my environment, the startup time for the `tag` command is about 1 second.
+
 
 ## DEVELOPERS:
 
