@@ -1,3 +1,7 @@
+.gemtest
+.ruby-version
+Gemfile
+Gemfile.lock
 Guardfile
 History.txt
 Manifest.txt
@@ -17,7 +21,10 @@ lib/openmeta/framework/OpenMeta.framework/Versions/A/Resources/Info.plist
 lib/openmeta/framework/OpenMeta.framework/Versions/A/Resources/en.lproj/InfoPlist.strings
 lib/openmeta/framework/OpenMeta.framework/Versions/Current
 lib/openmeta/friendly_errors.rb
+lib/openmeta/macruby.rb
+lib/openmeta/rubycocoa.rb
 lib/openmeta/ui.rb
 lib/openmeta/version.rb
+openmeta.rb.gemspec
 spec/openmeta_spec.rb
 spec/spec_helper.rb

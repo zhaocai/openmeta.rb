@@ -1,4 +1,4 @@
-#!/usr/bin/env macruby
+#!/usr/bin/ruby
 
 # Trap interrupts to quit cleanly. See
 # https://twitter.com/mitchellh/status/283014103189053442

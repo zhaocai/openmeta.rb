@@ -1,4 +1,4 @@
-#!/usr/bin/env macruby
+#!/usr/bin/ruby
 # -*- coding: utf-8 -*-
 
 require 'openmeta/version'
@@ -25,31 +25,31 @@ module Openmeta
     end
 
     def error
-      @error ||= Pointer.new(:id)
+      @error ||= OSX::NSError.new
     end
 
     # **note** returned array are frozen
     def get_tags(path)
-      tags = OpenMeta.getUserTags(File.expand_path(path), error:error)
-      if error.value
-        raise Openmeta::ObjCError, error.value.inspect
+      path = File.expand_path(path)
+      unless File.exist?(path)
+        raise Openmeta::ObjCError, "#{path} does not exist!"
       end
-      tags
+      OSX::OpenMeta.getUserTags_error_(path, error)
     end
 
     def set_tags(new_tags, path)
       path = File.expand_path(path)
 
-      existing_tags = OpenMeta.getUserTags(path, error:error)
-      if error.value
-        raise Openmeta::ObjCError, error.value.inspect
+      unless File.exist?(path)
+        raise Openmeta::ObjCError, "#{path} does not exist!"
       end
+      existing_tags = OSX::OpenMeta.getUserTags_error_(path, error)
 
-      if e = OpenMeta.setUserTags(new_tags, path:path)
+      if e = OSX::OpenMeta.setUserTags_path_(new_tags, path)
         raise Openmeta::ObjCError, e.inspect
       end
 
-      OpenMetaPrefs.updatePrefsRecentTags(existing_tags, newTags:new_tags)
+      OSX::OpenMetaPrefs.updatePrefsRecentTags_newTags_(existing_tags, new_tags)
     end
 
     def add_tags(new_tags, to_files)
@@ -58,11 +58,11 @@ module Openmeta
       to_files.each { |file|
         existing_tags = get_tags(file)
 
-        if e = OpenMeta.addUserTags(new_tags, path:file)
+        if e = OSX::OpenMeta.addUserTags_path_(new_tags, file)
           raise Openmeta::ObjCError, e.inspect
         end
 
-        OpenMetaPrefs.updatePrefsRecentTags(existing_tags, newTags:new_tags)
+        OSX::OpenMetaPrefs.updatePrefsRecentTags_newTags_(existing_tags, new_tags)
       }
     end
 
@@ -80,15 +80,16 @@ module Openmeta
     end
 
     def get_rating(path)
-      rating = OpenMeta.getRating(File.expand_path(path), error:error)
-      if error.value
-        raise Openmeta::ObjCError, error.value.inspect
+      path = File.expand_path(path)
+      unless File.exist?(path)
+        raise Openmeta::ObjCError, "#{path} does not exist!"
       end
-      rating
+
+      OSX::OpenMeta.getRating_error_(path, error)
     end
 
     def set_rating(rating, path)
-      e = OpenMeta.setRating(rating, path:File.expand_path(path))
+      e = OSX::OpenMeta.setRating_path_(rating, File.expand_path(path))
       if e
         raise Openmeta::ObjCError, e.inspect
       end
@@ -120,7 +121,7 @@ module Openmeta
 
 
     def recent_tags
-      OpenMetaPrefs.recentTags
+      OSX::OpenMetaPrefs.recentTags
     end
 
     private

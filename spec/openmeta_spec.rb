@@ -11,7 +11,7 @@ describe "Openmeta" do
       FileUtils .touch @testfiles
     end
 
-    it "should return raise ArgumentError if file does not exist" do
+    it "should return raise Openmeta::ObjcError if file does not exist" do
       expect { Openmeta.get_tags("/path/to/nowhere") }.to raise_error(Openmeta::ObjCError)
     end
 
