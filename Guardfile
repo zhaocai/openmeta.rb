@@ -1,11 +1,12 @@
 require 'guard/rspec'
+require 'rubygems'
 
 notification :growl
 # notification :terminal_notifier
 
-group :backend do
+group :system do
 
-  guard 'rspec', :rvm  => ["macruby"], :notification  => true  do
+  guard 'rspec', :rvm => ['system'], :notification  => true  do
 
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/#{m[1]}_spec.rb" }
@@ -14,5 +15,15 @@ group :backend do
 
 end
 
+group :multirubies do
+
+  guard 'rspec', :rvm => ['system', "macruby-nightly"], :notification  => true  do
+
+    watch(%r{^spec/.+_spec\.rb$})
+    watch(%r{^lib/(.+)\.rb$})     { |m| "spec/#{m[1]}_spec.rb" }
+    watch('spec/spec_helper.rb')  { "spec" }
+  end
+
+end
 
 

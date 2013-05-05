@@ -2,10 +2,10 @@ require "spec_helper"
 
 describe "Openmeta" do
   before :all do
-    Dir.chdir("test/")
+    Dir.chdir("test")
   end
 
-  context "with new files" do
+  context "tags and ratings" do
     before :all do
       @testfiles = ['testfile1.openmeta', 'testfile2.openmeta']
       FileUtils .touch @testfiles
@@ -31,8 +31,9 @@ describe "Openmeta" do
 
       rtags = Openmeta.get_tags(@testfiles[0])
       rrating = Openmeta.get_rating(@testfiles[0])
-      rtags.should == tags
-      rrating.should == rating
+
+      rtags.should eq tags
+      rrating.should eq rating
     end
 
     it "should clone tags and ratings correctly" do
@@ -42,8 +43,8 @@ describe "Openmeta" do
 
       rtags = Openmeta.get_tags(@testfiles[1])
       rrating = Openmeta.get_rating(@testfiles[1])
-      rtags.should == tags
-      rrating.should == rating
+      rtags.should eq tags
+      rrating.should eq rating
     end
 
     it "should add tags correctly" do

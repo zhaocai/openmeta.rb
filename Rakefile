@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'hoe'
+require 'rake/clean'
 
 Hoe.plugin :gemspec
 Hoe.plugin :bundler
@@ -15,14 +16,13 @@ Hoe.spec 'openmeta.rb' do
   license 'GPL-3'
 
   extra_deps << ['thor', '~> 0.18.0']
-  extra_deps << ['filetype', '~> 0.3.0']
+  # extra_deps << ['filetype', '~> 0.3.0']
 
 
 
 
 
-  extra_dev_deps << ['rspec', '>= 2.13']
-  extra_dev_deps << ['rake', '>= 10.0.0']
+  extra_dev_deps << ['rspec']
   extra_dev_deps << ['hoe'] << ['hoe-gemspec'] << ['hoe-git'] << ['hoe-version'] << ['hoe-bundler']
   extra_dev_deps << ['guard'] << ['guard-rspec'] << ['terminal-notifier-guard'] << ['growl']
 end
@@ -35,8 +35,21 @@ end
   end
 }
 
+desc "automate guard rspec"
+task :guard  do
+  sh %q{bundle exec guard --group=system}
+end
+
+desc "multirubies"
+task :multirubies  do
+  sh %q{bundle exec guard --group=multirubies}
+end
+
 desc "Default Test"
 task :default => [:spec] do
 end
+
+CLOBBER.include('log', 'vendor')
+CLEAN.include('test/tmp')
 
 # vim: syntax=ruby

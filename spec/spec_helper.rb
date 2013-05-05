@@ -16,6 +16,7 @@ RSpec.configure do |c|
   c.mock_with :rspec
 end
 
+
 class String
   def strip_heredoc
     indent = scan(/^[ \t]*(?=\S)/).min.size || 0

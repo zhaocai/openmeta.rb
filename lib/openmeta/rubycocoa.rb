@@ -28,13 +28,15 @@ module Openmeta
       @error ||= OSX::NSError.new
     end
 
-    # **note** returned array are frozen
     def get_tags(path)
       path = File.expand_path(path)
       unless File.exist?(path)
         raise Openmeta::ObjCError, "#{path} does not exist!"
       end
-      OSX::OpenMeta.getUserTags_error_(path, error)
+      
+      # **note** returned are NSMutableArray
+      tags = Array(OSX::OpenMeta.objc_send(:getUserTags, path, :error, error))
+      tags.map! { |tag| String(tag) }
     end
 
     def set_tags(new_tags, path)
@@ -43,9 +45,9 @@ module Openmeta
       unless File.exist?(path)
         raise Openmeta::ObjCError, "#{path} does not exist!"
       end
-      existing_tags = OSX::OpenMeta.getUserTags_error_(path, error)
+      existing_tags = OSX::OpenMeta.objc_send(:getUserTags, path, :error, error)
 
-      if e = OSX::OpenMeta.setUserTags_path_(new_tags, path)
+      if e = OSX::OpenMeta.objc_send(:setUserTags, new_tags, :path, path)
         raise Openmeta::ObjCError, e.inspect
       end
 
@@ -58,11 +60,11 @@ module Openmeta
       to_files.each { |file|
         existing_tags = get_tags(file)
 
-        if e = OSX::OpenMeta.addUserTags_path_(new_tags, file)
+        if e = OSX::OpenMeta.objc_send(:addUserTags, new_tags, :path, file)
           raise Openmeta::ObjCError, e.inspect
         end
 
-        OSX::OpenMetaPrefs.updatePrefsRecentTags_newTags_(existing_tags, new_tags)
+        OSX::OpenMetaPrefs.objc_send(:updatePrefsRecentTags, existing_tags, :newTags, new_tags)
       }
     end
 
@@ -85,11 +87,16 @@ module Openmeta
         raise Openmeta::ObjCError, "#{path} does not exist!"
       end
 
-      OSX::OpenMeta.getRating_error_(path, error)
+      OSX::OpenMeta.objc_send(:getRating, path, :error, error)
     end
 
     def set_rating(rating, path)
-      e = OSX::OpenMeta.setRating_path_(rating, File.expand_path(path))
+      path = File.expand_path(path)
+      unless File.exist?(path)
+        raise Openmeta::ObjCError, "#{path} does not exist!"
+      end
+
+      e = OSX::OpenMeta.objc_send(:setRating, rating, :path, path)
       if e
         raise Openmeta::ObjCError, e.inspect
       end

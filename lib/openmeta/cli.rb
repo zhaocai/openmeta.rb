@@ -109,7 +109,6 @@ module Openmeta
       unless format
         puts data
       else
-        require 'yaml' if format == 'yaml'
         to_format = "to_#{format}"
 
         begin
