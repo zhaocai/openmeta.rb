@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openmeta.rb (2.0.0.20130505143950)
+    openmeta.rb (2.1.1.20131024194128)
       thor (~> 0.18.0)
 
 GEM
