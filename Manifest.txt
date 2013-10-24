@@ -1,5 +1,4 @@
 .gemtest
-.ruby-version
 Gemfile
 Gemfile.lock
 Guardfile

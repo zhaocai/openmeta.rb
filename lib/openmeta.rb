@@ -9,9 +9,10 @@ if defined? MACRUBY_VERSION
 elsif RUBY_VERSION < "1.9"
   
   require 'osx/cocoa'
-  OSX::require_framework 'OpenMeta'
   require 'rubygems'
   require 'openmeta/rubycocoa'
+  openmeta_framework = File.expand_path("../openmeta/framework/OpenMeta.framework", __FILE__)
+  OSX::require_framework openmeta_framework
 else
   raise NotImplementedError, "(openmeta.rb) only work with macruby or system ruby"
 end
