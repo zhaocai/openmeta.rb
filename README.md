@@ -8,13 +8,17 @@
 
 ## DESCRIPTION:
 
-openMeta in Ruby (support mac system native ruby 1.8, and MacRuby). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) api to ruby using framework.
+openMeta in Ruby (support mac system native ruby 1.8, and MacRuby). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) API to ruby using framework.
+
+In OSX 10.9, the default support for rubycocoa is dropped. You can use /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby.
+
 
 
 ## INSTALLATION:
 
-* `[sudo] gem install openmeta.rb`
-* `[sudo] macgem install openmeta.rb`
+* Ruby 1.8.7: `[sudo] gem install openmeta.rb`
+
+* MacRuby: `[sudo] macgem install openmeta.rb`
 
 
 
