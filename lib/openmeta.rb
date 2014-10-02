@@ -4,7 +4,7 @@
 if defined? MACRUBY_VERSION
   framework "OpenMeta"
   require 'openmeta/macruby'
-elsif RUBY_VERSION < "1.9"
+else
 
   require 'osx/cocoa'
   require 'rubygems'
@@ -23,12 +23,9 @@ elsif RUBY_VERSION < "1.9"
 
   The package is installed to `gem which openmeta.rb`/resource/OpenMeta.framework.pkg
 
-  
   #{e.message}
   #{e.backtrace.join("\n")}
   }
   end
-else
-  raise NotImplementedError, "(openmeta.rb) only work with macruby or system ruby"
 end
 

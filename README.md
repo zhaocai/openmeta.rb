@@ -8,18 +8,16 @@
 
 ## DESCRIPTION:
 
-openMeta in Ruby (support mac system native ruby 1.8, and MacRuby). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) API to ruby using framework.
+**openMeta** in Ruby (support ruby 1.8, ruby 2.0 with RubyCocoa 1.2.0, and MacRuby). This gem ports [openmeta]( http://code.google.com/p/openmeta/ ) API to ruby using framework.
 
-In OSX 10.9, the default support for rubycocoa is dropped. You can use /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby.
-
+To work with ruby 2.0, update RubyCocoa to 1.2.0.
 
 
 ## INSTALLATION:
 
-* Ruby 1.8.7: `[sudo] gem install openmeta.rb`
+* Ruby: `[sudo] gem install openmeta.rb`
 
 * MacRuby: `[sudo] macgem install openmeta.rb`
-
 
 
 ## COMMAND LINE INTERFACE:
@@ -61,12 +59,12 @@ In OSX 10.9, the default support for rubycocoa is dropped. You can use /System/L
 
 ## KNOWN ISSUE:
 
-### 1. Macruby Slow Startup
+### 1. MacRuby Slow Startup
 
-A. Version 2.0+ support native mac ruby 1.8. Use system ruby instead.
+A. Version 2.0+ support built-in ruby 1.8. Use _system ruby_ instead.
 
-B. This is a [known commnon issue of macruby]( https://github.com/MacRuby/MacRuby/wiki/Common-Issues ). 
-One thing recommended is to add `VM_OPT_LEVEL=0` in front of the command line like 
+B. This is a [known commnon issue of macruby]( https://github.com/MacRuby/MacRuby/wiki/Common-Issues ).
+One thing recommended is to add `VM_OPT_LEVEL=0` in front of the command line like
 
 ```bash
 alias tag='VM_OPT_LEVEL=0 /usr/local/bin/tag'
